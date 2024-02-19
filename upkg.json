@@ -1,0 +1,5 @@
+{
+  "commands": {
+    "program-version": "program-version.sh"
+  }
+}

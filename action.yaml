@@ -1,0 +1,18 @@
+name: Program version
+description: Determines the program version based on a git ref
+inputs:
+  ref:
+    description: The git ref to use. Defaults to `github.ref``.
+    default: ${{ github.ref }}
+    required: false
+outputs:
+  version:
+    description: The program version
+    value: ${{ steps.version.outputs.version }}
+runs:
+  using: composite
+  steps:
+  - name: Determine program version
+    id: version
+    shell: bash
+    run: printf "version=%s\n" "$("$GITHUB_ACTION_PATH/program-version.sh" "${{ github.ref }}")" >> $GITHUB_OUTPUT
