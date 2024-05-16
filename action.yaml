@@ -2,7 +2,7 @@ name: Program version
 description: Determines the program version based on a git ref
 inputs:
   ref:
-    description: The git ref to use. Defaults to `github.ref``.
+    description: The git ref to use. Defaults to `github.ref`.
     default: ${{ github.ref }}
     required: false
 outputs:
