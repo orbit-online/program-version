@@ -1,5 +1,3 @@
 {
-  "commands": {
-    "program-version": "program-version.sh"
-  }
+  "name": "program-version"
 }

@@ -6,66 +6,66 @@ setup_file() {
 }
 
 @test 'refs/heads/main=main' {
-  run ./program-version.sh refs/heads/main
+  run bin/program-version refs/heads/main
   [ "$output" = "main" ]
 }
 
 @test 'refs/heads/master=master' {
-  run ./program-version.sh refs/heads/master
+  run bin/program-version refs/heads/master
   [ "$output" = "master" ]
 }
 
 @test 'refs/heads/ft-refactor=ft-refactor' {
-  run ./program-version.sh refs/heads/ft-refactor
+  run bin/program-version refs/heads/ft-refactor
   [ "$output" = "ft-refactor" ]
 }
 
 @test 'refs/tags/v1.0.3=v1.0.3' {
-  run ./program-version.sh refs/tags/v1.0.3
+  run bin/program-version refs/tags/v1.0.3
   [ "$output" = "v1.0.3" ]
 }
 
 @test 'refs/tags/1.0.3=v1.0.3' {
-  run ./program-version.sh refs/tags/1.0.3
+  run bin/program-version refs/tags/1.0.3
   [ "$output" = "v1.0.3" ]
 }
 
 @test 'refs/tags/very-pinned=very-pinned' {
-  run ./program-version.sh refs/tags/very-pinned
+  run bin/program-version refs/tags/very-pinned
   [ "$output" = "very-pinned" ]
 }
 
 @test 'refs/tags/f1.0.3=f1.0.3' {
-  run ./program-version.sh refs/tags/f1.0.3
+  run bin/program-version refs/tags/f1.0.3
   [ "$output" = "f1.0.3" ]
 }
 
 @test 'refs/tags/v=v' {
-  run ./program-version.sh refs/tags/v
+  run bin/program-version refs/tags/v
   [ "$output" = "v" ]
 }
 
 @test 'e02d09699ffb56440f34cb7448a0bc436e3ae212=e02d0969' {
-  run ./program-version.sh e02d09699ffb56440f34cb7448a0bc436e3ae212
+  run bin/program-version e02d09699ffb56440f34cb7448a0bc436e3ae212
   [ "$output" = "e02d0969" ]
 }
 
 @test 'e02d09699ffb56440f34cb7448=error' {
-  run -1 ./program-version.sh e02d09699ffb56440f34cb7448
+  run -1 bin/program-version e02d09699ffb56440f34cb7448
 }
 
 @test 'master=error' {
-  run -1 ./program-version.sh master
+  run -1 bin/program-version master
 }
 
 @test 'v1.0.3=error' {
-  run -1 ./program-version.sh v1.0.3
+  run -1 bin/program-version v1.0.3
 }
 
 @test 'refs/heads=error' {
-  run -1 ./program-version.sh refs/heads
+  run -1 bin/program-version refs/heads
 }
 
 @test 'refs/tags=error' {
-  run -1 ./program-version.sh refs/tags
+  run -1 bin/program-version refs/tags
 }

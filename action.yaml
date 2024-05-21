@@ -15,4 +15,4 @@ runs:
   - name: Determine program version
     id: version
     shell: bash
-    run: printf "version=%s\n" "$("$GITHUB_ACTION_PATH/program-version.sh" "${{ inputs.ref }}")" >> $GITHUB_OUTPUT
+    run: printf "version=%s\n" "$("$GITHUB_ACTION_PATH/bin/program-version" "${{ inputs.ref }}")" >> $GITHUB_OUTPUT
