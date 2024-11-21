@@ -25,9 +25,9 @@ setup_file() {
   [ "$output" = "v1.0.3" ]
 }
 
-@test 'refs/tags/1.0.3=v1.0.3' {
+@test 'refs/tags/1.0.3=1.0.3' {
   run bin/program-version refs/tags/1.0.3
-  [ "$output" = "v1.0.3" ]
+  [ "$output" = "1.0.3" ]
 }
 
 @test 'refs/tags/very-pinned=very-pinned' {
@@ -35,14 +35,14 @@ setup_file() {
   [ "$output" = "very-pinned" ]
 }
 
-@test 'refs/tags/f1.0.3=f1.0.3' {
-  run bin/program-version refs/tags/f1.0.3
-  [ "$output" = "f1.0.3" ]
-}
-
 @test 'refs/tags/v=v' {
   run bin/program-version refs/tags/v
   [ "$output" = "v" ]
+}
+
+@test 'refs/tags/f1.0.3=f1.0.3' {
+  run bin/program-version refs/tags/f1.0.3
+  [ "$output" = "f1.0.3" ]
 }
 
 @test 'e02d09699ffb56440f34cb7448a0bc436e3ae212=e02d0969' {
@@ -68,4 +68,54 @@ setup_file() {
 
 @test 'refs/tags=error' {
   run -1 bin/program-version refs/tags
+}
+
+@test '-p=mytool-v refs/heads/main=main' {
+  run bin/program-version -p mytool-v refs/heads/main
+  [ "$output" = "main" ]
+}
+
+@test '-p=mytool-v refs/heads/mytool-vmain=mytool-vmain' {
+  run bin/program-version -p mytool-v refs/heads/mytool-vmain
+  [ "$output" = "mytool-vmain" ]
+}
+
+@test '-p=mytool-v refs/tags/v1.0.3=v1.0.3' {
+  run bin/program-version -p mytool-v refs/tags/v1.0.3
+  [ "$output" = "v1.0.3" ]
+}
+
+@test '-p=mytool-v refs/tags/mytool-v1.0.3=v1.0.3' {
+  run bin/program-version -p mytool-v refs/tags/mytool-v1.0.3
+  [ "$output" = "v1.0.3" ]
+}
+
+@test '-p=mytool-v refs/tags/mytool-v1=v1' {
+  run bin/program-version -p mytool-v refs/tags/mytool-v1
+  [ "$output" = "v1" ]
+}
+
+@test '-p=v refs/tags/mytool-v1.0.3=mytool-v1.0.3' {
+  run bin/program-version -p v refs/tags/mytool-v1.0.3
+  [ "$output" = "mytool-v1.0.3" ]
+}
+
+@test '-p=mytool-v refs/tags/1.0.3=1.0.3' {
+  run bin/program-version -p mytool-v refs/tags/1.0.3
+  [ "$output" = "1.0.3" ]
+}
+
+@test '-p=mytool-v refs/tags/mytool-very-pinned=mytool-very-pinned' {
+  run bin/program-version -p mytool-v refs/tags/mytool-very-pinned
+  [ "$output" = "mytool-very-pinned" ]
+}
+
+@test '-p=mytool-v refs/tags/mytool-v3ry-pinned=v3ry-pinned' {
+  run bin/program-version -p mytool-v refs/tags/mytool-v3ry-pinned
+  [ "$output" = "v3ry-pinned" ]
+}
+
+@test '-p=mytool-v refs/tags/mytool-v=mytool-v' {
+  run bin/program-version -p mytool-v refs/tags/mytool-v
+  [ "$output" = "mytool-v" ]
 }

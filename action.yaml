@@ -5,6 +5,10 @@ inputs:
     description: The git ref to use. Defaults to `github.ref`.
     default: ${{ github.ref }}
     required: false
+  prefix:
+    description: Prefix to replace with 'v' in tags. Defaults to `v``.
+    default: ${{ github.ref }}
+    required: false
 outputs:
   version:
     description: The program version
