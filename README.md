@@ -87,7 +87,7 @@ jobs:
     steps:
     - id: program_version
       uses: orbit-online/program-version@v1
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - uses: docker/setup-buildx-action@v2
     - uses: docker/login-action@v2
       with:
